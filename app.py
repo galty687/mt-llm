@@ -138,8 +138,18 @@ def review_text_with_openai(text):
 # Streamlit interface
 st.title('智能翻译系统')
 
+if st.checkbox('填入示例文本'):
+    st.session_state["text_area"] = "These details must be in full compliance with the stipulations of these Regulations, and in principle half but at least a third of the time has to be spent at the University of Groningen. The title page to be approved by the Doctorate Board Support Office must include the name of the foreign university/universities. "
+
+else:
+    st.session_state["text_area"] = ''
+
+
+
 # Text input
-input_text = st.text_area("输入原文：")
+input_text = st.text_area("输入原文：", key="text_area")
+
+
 
 # Language selection for translation
 target_language = st.selectbox(
@@ -159,8 +169,7 @@ if st.button('谷歌翻译'):
                 
 
 
-            st.markdown("**谷歌翻译, Chatgpt润色版本:**")
-            st.write('---')    
+            st.markdown("**谷歌翻译**")
             st.write(translated_text_google)
             st.write('---')
         else:
@@ -177,7 +186,6 @@ if st.button('ChatGPT翻译'):
 
 
             st.markdown("**ChatGPT翻译:**")
-            st.write('---')
             st.write(translate_text_with_chatgpt)
             st.write('---')
         else:
@@ -213,11 +221,13 @@ if st.button('母语审校'):
                 
 
 
-            st.subheader("母语审校:")
+            st.markdown("**母语审校:**")
             st.write(reviewed_text)
             st.write('---')
         else:
              st.write("Please enter some text to get translated.")    
+
+st.write('---')
 
 if st.button('四种版本同时输出'):
     if input_text:
@@ -232,19 +242,19 @@ if st.button('四种版本同时输出'):
 
 
         #st.write("Cleaned Text:", cleaned_text)
-        st.subheader("谷歌翻译版本:")    
+        st.markdown("**谷歌翻译版本:**")    
         st.write(translated_text_google)
         st.write('---')
 
-        st.subheader("ChatGPT翻译版本:")    
+        st.markdown("**GPT-4翻译版本:**")    
         st.write(translate_text_with_chatgpt)
         st.write('---')
 
-        st.subheader("谷歌翻译, Chatgpt润色:")    
+        st.markdown("**谷歌翻译, GPT4润色:**")    
         st.write(edited_text)
         st.write('---')
 
-        st.subheader("母语审校:")
+        st.markdown("**母语审校:**")
         st.write(reviewed_text)
 
         st.success('成功完成')
