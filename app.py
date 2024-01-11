@@ -138,13 +138,6 @@ def review_text_with_openai(text):
 # Streamlit interface
 st.title('智能翻译系统')
 
-if st.checkbox('填入示例文本'):
-    st.session_state["text_area"] = "These details must be in full compliance with the stipulations of these Regulations, and in principle half but at least a third of the time has to be spent at the University of Groningen. The title page to be approved by the Doctorate Board Support Office must include the name of the foreign university/universities. "
-
-else:
-    st.session_state["text_area"] = ''
-
-
 
 # Text input
 input_text = st.text_area("输入原文：", key="text_area")
