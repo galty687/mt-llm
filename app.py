@@ -97,7 +97,7 @@ def editing_with_chatgpt(source, target):
         model="gpt-4-1106-preview",
        
         messages=[
-            {"role": "system", "content": "You are an translation expert."},
+            {"role": "system", "content": f"You are a/an {fields} translation expert."},
             {"role": "user", "content": f'Please polish the following translation. Output the translation only. No need to explain. \n source: {source} \n target: {target}'}
         ]
         )
@@ -150,7 +150,10 @@ target_language = st.selectbox(
     ["zh-CN","en"]
 )
 
-
+fields = st.selectbox(
+    "选择领域：",
+    ["script","general"]
+)
 
 
 if st.button('谷歌翻译'):
