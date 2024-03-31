@@ -256,3 +256,6 @@ if st.button('四种版本同时输出'):
         st.success('成功完成')
     else:
         st.write("Please enter some text to get translated.")
+
+
+## 触发更新
